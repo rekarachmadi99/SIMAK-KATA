@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AccountEmployeeModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,10 +27,17 @@ class AuthController extends Controller
 
         $data = [
             'nip' => $request->nip,
-            'password' => bcrypt($request->nip)
+            'password' => $request->password
         ];
-        dd(Auth::attempt($data));
-        if (Auth::attempt($data)) {
+        // Cek Is Aktif
+        $is_aktif = AccountEmployeeModel::where('nip', $request->nip)->first();
+        if ($is_aktif->is_aktif == 1) {
+            if (Auth::attempt($data)) {
+                return redirect(route('dashboard.index'));
+            }
+            return redirect(route('login'))->with('error', 'Nip dan password yang anda masukan salah!');
+        } else {
+            return redirect(route('login'))->with('error', 'Akun anda tidak aktif!');
         }
     }
 

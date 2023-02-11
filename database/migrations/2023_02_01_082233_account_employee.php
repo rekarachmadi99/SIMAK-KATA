@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('account_employee', function (Blueprint $table) {
             $table->id();
             $table->foreignId('nip')->references('nip')->on('employee');
-            $table->string('username');
+            $table->string('email');
             $table->string('password');
             $table->integer('is_aktif');
             $table->string('role');

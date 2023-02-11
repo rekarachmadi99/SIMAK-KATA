@@ -17,6 +17,8 @@ class AccountEmployeeModel extends Authenticatable
         'nip',
         'email',
         'password',
+        'is_aktif',
+        'role'
     ];
     protected $hidden = [
         'password'

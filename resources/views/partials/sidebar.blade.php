@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary  elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
         <img src="{{ asset('img/kab_tasik.png') }}" alt="AdminLTE Logo" class="brand-image img " style="opacity: .8">
@@ -11,7 +11,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block">Administrator</a>
@@ -23,27 +23,31 @@
                 <!-- Add icons to the links using the .nav-icon class
        with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="pages/calendar.html" class="nav-link">
+                    <a href="{{ route('dashboard.index') }}" class="nav-link  @if ($title == 'Dashboard')
+                        {{ 'active' }}
+                    @endif">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li class="nav-header">DATA MASTER</li>
                 <li class="nav-item">
-                    <a href="pages/calendar.html" class="nav-link">
+                    <a href="{{ route('akun.pegawai.index') }}" class="nav-link @if ($title == 'Akun Pegawai')
+                    {{ 'active' }}
+                @endif">
                         <i class="nav-icon far fa-folder"></i>
                         <p>Akun Pegawai</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/calendar.html" class="nav-link">
+                    <a href="{{ route('pegawai.index') }}" class="nav-link">
                         <i class="nav-icon far fa-user"></i>
                         <p>Pegawai</p>
                     </a>
                 </li>
                 <li class="nav-header">DATA AKTIVITAS</li>
                 <li class="nav-item">
-                    <a href="pages/calendar.html" class="nav-link">
+                    <a href="{{ route('tpcb.index') }}" class="nav-link">
                         <i class="nav-icon far fa-folder"></i>
                         <p>Tim TPCB</p>
                     </a>

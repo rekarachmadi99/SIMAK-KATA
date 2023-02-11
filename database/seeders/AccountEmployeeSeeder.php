@@ -14,6 +14,13 @@ class AccountEmployeeSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $data = new \App\Models\AccountEmployeeModel();
+        $data->create([
+            'nip' => 1,
+            'email' => 'admin@example.com',
+            'password' => bcrypt('123'),
+            'is_aktif' => 1,
+            'role' => 1
+        ]);
     }
 }

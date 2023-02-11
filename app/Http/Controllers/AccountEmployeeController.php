@@ -2,84 +2,94 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\accountEmployee;
-use App\Http\Requests\StoreaccountEmployeeRequest;
-use App\Http\Requests\UpdateaccountEmployeeRequest;
+use App\Models\AccountEmployeeModel;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AccountEmployeeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        return view('pages.akun.akunPegawai', [
+            'title' => 'Akun Pegawai',
+            'akun' => AccountEmployeeModel::all()
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function nonAktifAccount(Request $request)
+    {
+        $nonAktif = new AccountEmployeeModel();
+
+        $sumAccount = AccountEmployeeModel::sum('id');
+        $minAccount = AccountEmployeeModel::min('id');
+        $nonAktif = new AccountEmployeeModel();
+        for ($i = $minAccount; $i < $sumAccount; $i++) {
+            $find = $nonAktif->find($i)->first();
+            if ($find->role != 1) {
+                $nonAktif->find($i)->update([
+                    'is_aktif' => $request->is_aktif
+                ]);
+            }
+        }
+        return redirect()->route('akun.pegawai.index')->with('success', 'Semua akun berhasil di nonaktifkan!');
+    }
+
+    public function resetPasswordDefault(Request $request)
+    {
+        $sumAccount = AccountEmployeeModel::sum('id');
+        $minAccount = AccountEmployeeModel::min('id');
+        $resetPasswordDefault = new AccountEmployeeModel();
+        for ($i = $minAccount; $i < $sumAccount; $i++) {
+            $password = $resetPasswordDefault->find($i)->first();
+            $resetPasswordDefault->find($i)->update([
+                'password' => bcrypt($password->nip)
+            ]);
+        }
+
+        return redirect()->route('akun.pegawai.index')->with('success', 'Password berhasil di update!');
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'nip' => ['required'],
+            'email' => ['required', 'email'],
+            'password' => ['required', 'min:6', 'same:konfirmasiPassword'],
+            'konfirmasiPassword' => ['required', 'min:6'],
+        ], [
+            'required.nip' => 'NIP jangan kosong!',
+            'required.email' => 'Email jangan kosong!',
+            'required.password' => 'Password jangan kosong!',
+            'required.konfirmasiPassword' => 'Konfirmasi password jangan kosong'
+        ]);
+
+        $store = new AccountEmployeeModel();
+        $store->nip = $request->nip;
+        $store->email = $request->email;
+        $store->password = bcrypt($request->password);
+        $store->is_aktif = $request->is_aktif;
+        $store->role = $request->role;
+        $store->save();
+
+        return redirect(route('akun.pegawai.index'))->with('success', 'Data berhasil ditambah!');
+    }
+
+
+    public function edit($id)
+    {
+        return view('pages.akun.editAkunPegawai', [
+            'title' => 'Edit Akun Pegawai',
+            'id' => $id
+        ]);
+    }
+
+
+    public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreaccountEmployeeRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreaccountEmployeeRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\accountEmployee  $accountEmployee
-     * @return \Illuminate\Http\Response
-     */
-    public function show(accountEmployee $accountEmployee)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\accountEmployee  $accountEmployee
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(accountEmployee $accountEmployee)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateaccountEmployeeRequest  $request
-     * @param  \App\Models\accountEmployee  $accountEmployee
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateaccountEmployeeRequest $request, accountEmployee $accountEmployee)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\accountEmployee  $accountEmployee
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(accountEmployee $accountEmployee)
+    public function destroy($id)
     {
         //
     }

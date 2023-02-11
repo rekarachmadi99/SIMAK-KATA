@@ -7,8 +7,7 @@
     <title>{{ $title }}</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <!-- icheck bootstrap -->
@@ -19,6 +18,16 @@
 
 <body class="hold-transition login-page">
     @yield('content')
+
+    {{-- Dismiss Alert --}}
+    <script>
+        window.setTimeout(() => {
+            $('.alert').fadeTo(500, 0).slideUp(500, () => {
+                $(this).remove();
+            })
+        }, 2000);
+
+    </script>
     <!-- jQuery -->
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap 4 -->
