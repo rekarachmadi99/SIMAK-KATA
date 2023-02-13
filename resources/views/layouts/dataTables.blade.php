@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
+
 </head>
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -38,6 +39,16 @@
     <!-- Bootstrap 4 -->
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
-    <script src="{{ asset('') }}dist/js/adminlte.min.js"></script>
+    <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+
+    @include('sweetalert::alert')
+
+    <script>
+        function myFunction() {
+            if (!confirm("Are You Sure to delete this"))
+                event.preventDefault();
+        }
+
+    </script>
 </body>
 </html>

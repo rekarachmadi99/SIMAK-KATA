@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('jabatan');
             $table->string('golongan');
+            $table->integer('status');
             $table->string('foto');
             $table->timestamps();
         });

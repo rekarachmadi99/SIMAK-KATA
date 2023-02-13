@@ -20,6 +20,7 @@ class EmployeeSeeder extends Seeder
             'nama' => 'Admin',
             'jabatan' => 'Admin',
             'golongan' => 'IV-B',
+            'status' => 1,
             'foto' => 'default.jpg'
         ]);
     }

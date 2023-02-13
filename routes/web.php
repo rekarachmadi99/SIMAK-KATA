@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountEmployeeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -38,14 +39,19 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/akun-pegawai', [AccountEmployeeController::class, 'index'])->name('akun.pegawai.index');
         Route::post('/akun-pegawai', [AccountEmployeeController::class, 'store'])->name('akun.pegawai.store');
         Route::patch('/akun-pegawai/nonaktif-akun', [AccountEmployeeController::class, 'nonAktifAccount'])->name('nonaktif.account.update');
-        Route::patch('/akun-pegawai/nonaktif-akun', [AccountEmployeeController::class, 'nonAktifAccount'])->name('reset.password.default.update');
+        Route::patch('/akun-pegawai/reset-password-default', [AccountEmployeeController::class, 'resetPasswordDefault'])->name('reset.password.default.update');
         Route::get('/akun-pegawai/{id}/edit', [AccountEmployeeController::class, 'edit'])->name('akun.pegawai.edit');
         Route::patch('/akun-pegawai', [AccountEmployeeController::class, 'update'])->name('akun.pegawai.update');
         Route::delete('/akun-pegawai/{id}', [AccountEmployeeController::class, 'destroy'])->name('akun.pegawai.destroy');
 
         // Employee
         Route::get('/pegawai', [EmployeeController::class, 'index'])->name('pegawai.index');
+        Route::get('/pegawai/tambah', [EmployeeController::class, 'create'])->name('pegawai.create');
+        Route::post('/pegawai', [EmployeeController::class, 'store'])->name('pegawai.store');
+        Route::get('/pegawai/{id}/edit', [EmployeeController::class, 'edit'])->name('pegawai.edit');
+        Route::patch('/pegawai', [EmployeeController::class, 'update'])->name('pegawai.update');
 
+        // Tim TPCB
         Route::get('/tim-tpcb', function () {
             return view('pages.timTPCB.dataTimTPCB');
         })->name('tpcb.index');

@@ -78,9 +78,6 @@
                                                     <option value="3">Pegawai</option>
                                                 </Select>
                                             </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             <input type="submit" class="btn btn-primary" value="Tambah Akun Pegawai">
                                         </div>
                                     </form>
@@ -127,11 +124,13 @@
                                             <a href="{{ route('akun.pegawai.edit', $akun->id) }}" class="mr-2">
                                                 <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
                                             </a>
-                                            <form action="" method="post">
+                                            @if($akun->role != 1)
+                                            <form action="{{ route('akun.pegawai.destroy',$akun->id) }}" method="post">
                                                 @method('delete')
                                                 @csrf
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                                <button type="submit" onclick="return confirm('Anda yakin ingin menghapus akun?');" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                             </form>
+                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach
@@ -150,20 +149,20 @@
                                 @method('patch')
                                 @csrf
                                 <input type="text" name="is_aktif" id="is_aktif" value="1" hidden>
-                                <input type="submit" class="btn btn-primary btn-block" onclick="confirm();" value="Aktifkan Semua Akun">
+                                <input type="submit" class="btn btn-primary btn-block" onclick="return confirm('Aktifkan akun pegawai?');" value="Aktifkan Semua Akun">
                             </form>
 
                             <form action="{{ route('nonaktif.account.update') }}" class="mb-2" method="POST">
                                 @method('patch')
                                 @csrf
                                 <input type="text" name="is_aktif" id="is_aktif" value="0" hidden>
-                                <input type="submit" class="btn btn-danger btn-block" value="Nonaktifkan Semua Akun">
+                                <input type="submit" class="btn btn-danger btn-block" onclick="return confirm('Nonaktifkan akun pegawai?');" value="Nonaktifkan Semua Akun">
                             </form>
 
-                            <form action="{{ route('akun.pegawai.update') }}" method="post">
+                            <form action="{{ route('reset.password.default.update') }}" method="post">
                                 @method('patch')
                                 @csrf
-                                <input type="submit" class="btn btn-danger btn-block" onclick="confirm();" value="Reset Password Default">
+                                <input type="submit" class="btn btn-danger btn-block" onclick="return confirm('Apakah kamu yakin?');" value="Reset Password Default">
                             </form>
 
                         </div>

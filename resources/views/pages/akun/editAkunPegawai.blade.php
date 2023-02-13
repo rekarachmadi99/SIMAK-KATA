@@ -13,41 +13,49 @@
                     <h4>Edit Data Pegawai</h4>
                 </div>
                 <div class="card-body">
-                    <form action="" method="post">
-
+                    <form action="{{ route('akun.pegawai.update') }}" method="post">
+                        @method('patch')
+                        @csrf
                         <div class="form-group">
                             <label for="">NIP</label>
-                            <input type="text" class="form-control" readonly>
+                            <input type="text" name="nip" class="form-control" value="{{ $data->nip }}" readonly>
                         </div>
 
                         <div class="form-group">
                             <label for="">Email</label>
-                            <input type="email" class="form-control">
+                            <input type="email" class="form-control" name="email" value="{{ $data->email }}">
                         </div>
 
                         <div class="row">
                             <div class="col">
-                                <div class="form-group">
+                                <div class="form-group mb-0">
                                     <label for="">Password</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" name="password" class="form-control">
                                 </div>
+                                <p>*Password kosongkan jika tidak ingin di update!</p>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label for="">Konfirmasi Password</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" name="konfirmasi_password" class="form-control">
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="">Status Akun</label>
-                            <input type="text" class="form-control">
+                            <label for="nip">Status Akun</label>
+                            <Select class="form-control" name="is_aktif" id="is_aktif">
+                                <option @if ($data->is_aktif == 1) {{ 'selected' }} @endif value="1">Aktif</option>
+                                <option @if ($data->is_aktif == 0) {{ 'selected' }} @endif value="0">Tidak Aktif</option>
+                            </Select>
                         </div>
-
                         <div class="form-group">
-                            <label for="">Role Akun</label>
-                            <input type="text" class="form-control">
+                            <label for="nip">Role Akun</label>
+                            <Select class="form-control" name="role" id="role">
+                                <option @if ($data->role == 1) {{ 'selected' }} @endif value="1">Administrator</option>
+                                <option @if ($data->role == 2) {{ 'selected' }} @endif value="2">pimpinan</option>
+                                <option @if ($data->role == 3) {{ 'selected' }} @endif value="3">Pegawai</option>
+                            </Select>
                         </div>
 
                         <div class="d-flex justify-content-end">

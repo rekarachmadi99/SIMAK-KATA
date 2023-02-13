@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AccountEmployeeModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class AccountEmployeeController extends Controller
@@ -18,35 +19,48 @@ class AccountEmployeeController extends Controller
 
     public function nonAktifAccount(Request $request)
     {
-        $nonAktif = new AccountEmployeeModel();
-
-        $sumAccount = AccountEmployeeModel::sum('id');
+        DB::statement("ALTER TABLE account_employee DROP id");
+        DB::statement("ALTER TABLE account_employee ADD id INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST");
+        $sumAccount = AccountEmployeeModel::count('id');
         $minAccount = AccountEmployeeModel::min('id');
         $nonAktif = new AccountEmployeeModel();
-        for ($i = $minAccount; $i < $sumAccount; $i++) {
-            $find = $nonAktif->find($i)->first();
+
+        $is_aktif = $request->is_aktif;
+        for ($i = $minAccount; $i <= $sumAccount; $i++) {
+            $find = $nonAktif->where('id', $i)->first();
+
             if ($find->role != 1) {
-                $nonAktif->find($i)->update([
-                    'is_aktif' => $request->is_aktif
+                $nonAktif->where('id', $i)->update([
+                    'is_aktif' => $is_aktif
                 ]);
             }
         }
-        return redirect()->route('akun.pegawai.index')->with('success', 'Semua akun berhasil di nonaktifkan!');
+        if ($is_aktif == 1) {
+            $message = 'Semua akun berhasil diaktifkan!';
+        } else {
+            $message = 'Semua akun berhasil dinonaktifkan!';
+        }
+
+        return redirect()->route('akun.pegawai.index')->with('toast_success', $message);
     }
 
-    public function resetPasswordDefault(Request $request)
+    public function resetPasswordDefault()
     {
+        DB::statement("ALTER TABLE account_employee DROP id");
+        DB::statement("ALTER TABLE account_employee ADD id INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST");
         $sumAccount = AccountEmployeeModel::sum('id');
         $minAccount = AccountEmployeeModel::min('id');
         $resetPasswordDefault = new AccountEmployeeModel();
         for ($i = $minAccount; $i < $sumAccount; $i++) {
-            $password = $resetPasswordDefault->find($i)->first();
-            $resetPasswordDefault->find($i)->update([
-                'password' => bcrypt($password->nip)
-            ]);
+            $password = $resetPasswordDefault->where('id', $i)->first();
+            if ($password->role != 1) {
+                $resetPasswordDefault->where('id', $i)->update([
+                    'password' => bcrypt($password->nip)
+                ]);
+            }
         }
 
-        return redirect()->route('akun.pegawai.index')->with('success', 'Password berhasil di update!');
+        return redirect()->route('akun.pegawai.index')->with('toast_success', 'Password berhasil dikembalikan kesetelan default!');
     }
 
     public function store(Request $request)
@@ -79,18 +93,41 @@ class AccountEmployeeController extends Controller
     {
         return view('pages.akun.editAkunPegawai', [
             'title' => 'Edit Akun Pegawai',
-            'id' => $id
+            'data' => AccountEmployeeModel::where('id', $id)->first()
         ]);
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $this->validate($request, [
+            'password' => ['same:konfirmasi_password']
+        ]);
+        $update = AccountEmployeeModel::where('nip', $request->nip);
+        if ($request->password == NULL) {
+            $update->update([
+                'nip' => $request->nip,
+                'email' => $request->email,
+                'is_aktif' => $request->is_aktif,
+                'role' => $request->role
+            ]);
+            return redirect()->route('akun.pegawai.index')->with('toast_success', 'Akun pegawai berhasil diupdate!');
+        }
+        $update->update([
+            'nip' => $request->nip,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'is_aktif' => $request->is_aktif,
+            'role' => $request->role
+        ]);
+        return redirect()->route('akun.pegawai.index')->with('toast_success', 'Akun pegawai berhasil diupdate!');
     }
 
     public function destroy($id)
     {
-        //
+        $destroy = new AccountEmployeeModel();
+        $destroy->where('id', $id)->delete();
+
+        return redirect()->route('akun.pegawai.index')->with('toast_success', 'Akun pegawai berhasil dihapus!');
     }
 }

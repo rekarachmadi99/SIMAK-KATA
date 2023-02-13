@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('password');
             $table->integer('is_aktif');
-            $table->string('role');
+            $table->integer('role');
             $table->timestamps();
         });
     }

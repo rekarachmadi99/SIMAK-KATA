@@ -21,7 +21,10 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Data Pegawai</h3>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h3 class="card-title">Data Pegawai</h3>
+                        <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i></a>
+                    </div>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -38,7 +41,26 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            @php
+                            $no = 1;
+                            @endphp
+                            @foreach ($data as $data)
+                            <tr>
+                                <td>{{ $no++ }}</td>
+                                <td>{{ $data->nip }}</td>
+                                <td>{{ $data->nama }}</td>
+                                <td>{{ $data->jabatan }}</td>
+                                <td>{{ $data->golongan }}</td>
+                                <td>{{ $data->foto }}</td>
+                                <td>
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <a href="{{ route('pegawai.edit', $data->nip) }}" class="mr-2">
+                                            <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
                         </tbody>
                         <tfoot>
                             <tr>
