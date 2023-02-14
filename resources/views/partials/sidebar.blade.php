@@ -32,30 +32,22 @@
                 </li>
                 <li class="nav-header">DATA MASTER</li>
                 <li class="nav-item">
-                    <a href="{{ route('akun.pegawai.index') }}" class="nav-link @if ($title == 'Akun Pegawai')
-                    {{ 'active' }}
-                @endif">
+                    <a href="{{ route('akun.pegawai.index') }}" class="nav-link @if ($title == 'Akun Pegawai' || $title == 'Edit Akun Pegawai') {{ 'active' }} @endif">
                         <i class="nav-icon far fa-folder"></i>
                         <p>Akun Pegawai</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pegawai.index') }}" class="nav-link">
+                    <a href="{{ route('pegawai.index') }}" class="nav-link @if ($title == 'Pegawai' || $title == 'Tambah Pegawai' || $title == 'Edit Pegawai') {{ 'active' }} @endif">
                         <i class="nav-icon far fa-user"></i>
                         <p>Pegawai</p>
                     </a>
                 </li>
                 <li class="nav-header">DATA AKTIVITAS</li>
                 <li class="nav-item">
-                    <a href="{{ route('tpcb.index') }}" class="nav-link">
+                    <a href="{{ route('tpcb.index') }}" class="nav-link @if ($title == 'Tim Pembina Cluster Binaan') {{ 'active' }} @endif">
                         <i class="nav-icon far fa-folder"></i>
-                        <p>Tim TPCB</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="pages/calendar.html" class="nav-link">
-                        <i class="nav-icon far fa-user"></i>
-                        <p>Pegawai</p>
+                        <p>Tim Pembina Cluster Binaan</p>
                     </a>
                 </li>
 

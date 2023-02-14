@@ -8,9 +8,9 @@
     <section class="content">
         <div class="container-fluid">
 
-            <div class="card">
+            <div class="card card-primary">
                 <div class="card-header">
-                    <h4>Edit Data Pegawai</h4>
+                    <h3 class="card-title">Edit Data Pegawai</h3>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('akun.pegawai.update') }}" method="post">
@@ -32,7 +32,7 @@
                                     <label for="">Password</label>
                                     <input type="text" name="password" class="form-control">
                                 </div>
-                                <p>*Password kosongkan jika tidak ingin di update!</p>
+                                <p class="badge badge-info">*Password kosongkan jika tidak ingin di update!</p>
                             </div>
                             <div class="col">
                                 <div class="form-group">

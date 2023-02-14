@@ -24,7 +24,7 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>5</h3>
+                            <h3>{{ $totalPegawai }}</h3>
                             <p>Jumlah Pegawai</p>
                         </div>
                         <div class="icon">
@@ -40,7 +40,7 @@
                         <div class="inner">
                             <h3>44</h3>
 
-                            <p>Jumlah Tim TPCB</p>
+                            <p>Jumlah Tim Pembina Cluster Binaan</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-users"></i>

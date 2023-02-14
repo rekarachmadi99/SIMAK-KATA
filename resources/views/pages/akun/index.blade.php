@@ -21,7 +21,7 @@
 
             <div class="row">
                 <div class="col-md-8 col-12">
-                    <div class="card">
+                    <div class="card card-primary card-outline">
                         <div class="card-header">
                             <div class="d-flex align-items-center justify-content-between">
                                 <h3 class="card-title">Data Akun Pegawai</h3>
@@ -35,7 +35,7 @@
                                 <div class="modal-content">
                                     <form action="{{ route('akun.pegawai.store') }}" method="post">
                                         @csrf
-                                        <div class="modal-header">
+                                        <div class="modal-header bg-primary">
                                             <h5 class="modal-title" id="exampleModalLabel">Tambah Akun Pegawai</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -140,7 +140,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-12">
-                    <div class="card">
+                    <div class="card card-primary card-outline">
                         <div class="card-header">
                             <h3 class="card-title">Fitur</h3>
                         </div>

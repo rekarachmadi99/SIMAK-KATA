@@ -7,9 +7,12 @@
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <h1 class="m-0">Tim Pembina Cluster Binaan</h1>
-                    <p>Tim pembina cluster binaan terdiri dari 5 tim :</p>
+                    <div class="callout callout-info">
+                        <h5><i class="fas fa-info"></i> Keterangan:</h5>
+                        This page has been enhanced for printing. Click the print button at the bottom of the invoice to test.
+                    </div>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -23,7 +26,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <div class="card-header text-center"><b>Tim 1</b></div>
+                        <div class="card-header text-center bg-primary"><b>Tim 1</b></div>
                         <div class="card-body">
                             <table class="table table-bordered table-hover">
                                 <thead class="text-center">
@@ -65,7 +68,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card">
-                        <div class="card-header text-center"><b>Tim 2</b></div>
+                        <div class="card-header text-center bg-primary"><b>Tim 2</b></div>
                         <div class="card-body">
                             <table class="table table-bordered table-hover">
                                 <thead class="text-center">
@@ -107,7 +110,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card">
-                        <div class="card-header text-center"><b>Tim 3</b></div>
+                        <div class="card-header text-center bg-primary"><b>Tim 3</b></div>
                         <div class="card-body">
                             <table class="table table-bordered table-hover">
                                 <thead class="text-center">
@@ -151,7 +154,7 @@
             <div class="row d-flex align-items-center justify-content-center">
                 <div class="col-md-4">
                     <div class="card">
-                        <div class="card-header text-center"><b>Tim 4</b></div>
+                        <div class="card-header text-center bg-primary"><b>Tim 4</b></div>
                         <div class="card-body">
                             <table class="table table-bordered table-hover">
                                 <thead class="text-center">
@@ -193,7 +196,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card">
-                        <div class="card-header text-center"><b>Tim 5</b></div>
+                        <div class="card-header text-center bg-primary"><b>Tim 5</b></div>
                         <div class="card-body">
                             <table class="table table-bordered table-hover">
                                 <thead class="text-center">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AccountEmployeeModel;
+use App\Models\EmployeeModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -45,6 +46,14 @@ class AuthController extends Controller
     {
         return view('pages.lupaPassword', [
             'title' => 'Lupa Password'
+        ]);
+    }
+
+    public function dashboard()
+    {
+        return view('pages.dashboard', [
+            'title' => 'Dashboard',
+            'totalPegawai' => EmployeeModel::where('status', 1)->count('nip')
         ]);
     }
 }

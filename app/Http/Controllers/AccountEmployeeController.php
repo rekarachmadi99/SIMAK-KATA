@@ -11,7 +11,7 @@ class AccountEmployeeController extends Controller
 {
     public function index()
     {
-        return view('pages.akun.akunPegawai', [
+        return view('pages.akun.index', [
             'title' => 'Akun Pegawai',
             'akun' => AccountEmployeeModel::all()
         ]);
@@ -91,7 +91,7 @@ class AccountEmployeeController extends Controller
 
     public function edit($id)
     {
-        return view('pages.akun.editAkunPegawai', [
+        return view('pages.akun.edit', [
             'title' => 'Edit Akun Pegawai',
             'data' => AccountEmployeeModel::where('id', $id)->first()
         ]);
