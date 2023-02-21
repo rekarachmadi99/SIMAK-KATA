@@ -41,9 +41,13 @@
                             <input type="text" class="form-control" name="golongan" id="golongan" value="{{ $edit->golongan }}">
                         </div>
                         <div class="form-group">
+                            <label for="nip">No Telepon</label>
+                            <input type="text" class="form-control" name="no_telepon" value="{{ $edit->no_telepon }}">
+                        </div>
+                        <div class="form-group">
                             <label for="nip">Status Pegawai</label>
                             <Select class="form-control" name="status" id="status">
-                                <option @if ($edit->status == 0) {{ 'selected' }} @endif value="0">Keluar</option>
+                                <option @if ($edit->status == 0) {{ 'selected' }} @endif value="0">Tidak Aktif Bekerja</option>
                                 <option @if ($edit->status == 1) {{ 'selected' }} @endif value="1">Aktif Bekerja</option>
                             </Select>
                         </div>

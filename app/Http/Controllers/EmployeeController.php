@@ -72,6 +72,19 @@ class EmployeeController extends Controller
                     'nama' => $request->nama,
                     'jabatan' => $request->jabatan,
                     'status' => $request->status,
+                    'no_telepon' => $request->no_telepon,
+                    'foto' => $nama_foto
+                ];
+            } else {
+                $request->file('foto')->store('public/img');
+                $nama_foto = $request->nip . '.' . $request->file('foto')->getClientOriginalExtension();
+                $request->file('foto')->move(public_path('img/pegawai/'), $nama_foto);
+                $data = [
+                    'nip' => $request->nip,
+                    'nama' => $request->nama,
+                    'jabatan' => $request->jabatan,
+                    'status' => $request->status,
+                    'no_telepon' => $request->no_telepon,
                     'foto' => $nama_foto
                 ];
             }
@@ -81,6 +94,7 @@ class EmployeeController extends Controller
                 'nama' => $request->nama,
                 'jabatan' => $request->jabatan,
                 'status' => $request->status,
+                'no_telepon' => $request->no_telepon,
                 'foto' => $find->foto
             ];
         }

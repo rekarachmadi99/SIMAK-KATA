@@ -15,13 +15,13 @@ class EmployeeSeeder extends Seeder
     public function run()
     {
         $data = new \App\Models\EmployeeModel();
-        $data->create([
-            'nip' => 1,
-            'nama' => 'Admin',
-            'jabatan' => 'Admin',
-            'golongan' => 'IV-B',
-            'status' => 1,
-            'foto' => 'default.jpg'
-        ]);
+        $data->nip = 1;
+        $data->nama = 'Admin';
+        $data->jabatan = 'Administrator';
+        $data->golongan = 'IV-B';
+        $data->status = 1;
+        $data->no_telepon = '082311129049';
+        $data->foto = 'default.jpg';
+        $data->save();
     }
 }

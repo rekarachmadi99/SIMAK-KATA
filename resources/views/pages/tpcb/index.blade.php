@@ -6,10 +6,10 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
-            <div class="row mb-2">
+            <div class="row">
                 <div class="col-sm-12">
                     <h1 class="m-0">Tim Pembina Cluster Binaan</h1>
-                    <div class="callout callout-info">
+                    <div class="callout callout-info mt-4">
                         <h5><i class="fas fa-info"></i> Keterangan:</h5>
                         This page has been enhanced for printing. Click the print button at the bottom of the invoice to test.
                     </div>
@@ -38,20 +38,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                    $id = 1
+                                    @endphp
+                                    @foreach ($data->where('tim','1')->get() as $data)
                                     <tr>
-                                        <td>1</td>
-                                        <td>Drs. Haryati Nandi</td>
-                                        <td>Sekertaris Dinas</td>
+                                        <td>{{ $id++ }}</td>
+                                        <td>{{ $data->nama }}</td>
+                                        <td>{{ $data->jabatan }}</td>
                                         <td>
-                                            <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i></a> </td>
+                                            <a href="{{ route('tpcb.view',$data->nip) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a> </td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Dr. Dudi Nandi</td>
-                                        <td>Anggota</td>
-                                        <td>
-                                            <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i></a> </td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                                 <tfoot class="text-center">
                                     <tr>
@@ -62,7 +60,7 @@
                                     </tr>
                                 </tfoot>
                             </table>
-                            <a href="#" class="btn btn-primary mt-3"><i class="fa fa-folder mr-2" aria-hidden="true"></i>Edit Data Tim 1</a>
+                            <a href="{{ route('tpcb.edit') }}" class="btn btn-primary mt-3"><i class="fa fa-folder mr-2" aria-hidden="true"></i>Tambah/Edit Data Tim</a>
                         </div>
                     </div>
                 </div>
@@ -80,20 +78,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                    $id = 1
+                                    @endphp
+                                    @foreach ($data->where('tim','2')->get() as $data)
                                     <tr>
-                                        <td>1</td>
-                                        <td>Drs. Haryati Nandi</td>
-                                        <td>Sekertaris Dinas</td>
+                                        <td>{{ $id++ }}</td>
+                                        <td>{{ $data->nama }}</td>
+                                        <td>{{ $data->jabatan }}</td>
                                         <td>
-                                            <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i></a> </td>
+                                            <a href="{{ route('tpcb.view',$data->nip) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a> </td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Dr. Dudi Nandi</td>
-                                        <td>Anggota</td>
-                                        <td>
-                                            <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i></a> </td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                                 <tfoot class="text-center">
                                     <tr>
@@ -104,7 +100,7 @@
                                     </tr>
                                 </tfoot>
                             </table>
-                            <a href="#" class="btn btn-primary mt-3"><i class="fa fa-folder mr-2" aria-hidden="true"></i>Edit Data Tim 2</a>
+                            <a href="{{ route('tpcb.edit') }}" class="btn btn-primary mt-3"><i class="fa fa-folder mr-2" aria-hidden="true"></i>Tambah/Edit Data Tim</a>
                         </div>
                     </div>
                 </div>
@@ -122,20 +118,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                    $id = 1;
+                                    @endphp
+                                    @foreach ($data->where('tim','3')->get() as $data)
                                     <tr>
-                                        <td>1</td>
-                                        <td>Drs. Haryati Nandi</td>
-                                        <td>Sekertaris Dinas</td>
+                                        <td>{{ $id++ }}</td>
+                                        <td>{{ $data->nama }}</td>
+                                        <td>{{ $data->jabatan }}</td>
                                         <td>
-                                            <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i></a> </td>
+                                            <a href="{{ route('tpcb.view',$data->nip) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a> </td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Dr. Dudi Nandi</td>
-                                        <td>Anggota</td>
-                                        <td>
-                                            <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i></a> </td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                                 <tfoot class="text-center">
                                     <tr>
@@ -146,7 +140,7 @@
                                     </tr>
                                 </tfoot>
                             </table>
-                            <a href="#" class="btn btn-primary mt-3"><i class="fa fa-folder mr-2" aria-hidden="true"></i>Edit Data Tim 3</a>
+                            <a href="{{ route('tpcb.edit') }}" class="btn btn-primary mt-3"><i class="fa fa-folder mr-2" aria-hidden="true"></i>Tambah/Edit Data Tim</a>
                         </div>
                     </div>
                 </div>
@@ -166,20 +160,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                    $id=1;
+                                    @endphp
+                                    @foreach ($data->where('tim','4')->get() as $data)
                                     <tr>
-                                        <td>1</td>
-                                        <td>Drs. Haryati Nandi</td>
-                                        <td>Sekertaris Dinas</td>
+                                        <td>{{ $id++ }}</td>
+                                        <td>{{ $data->nama }}</td>
+                                        <td>{{ $data->jabatan }}</td>
                                         <td>
-                                            <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i></a> </td>
+                                            <a href="{{ route('tpcb.view',$data->nip) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a> </td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Dr. Dudi Nandi</td>
-                                        <td>Anggota</td>
-                                        <td>
-                                            <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i></a> </td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                                 <tfoot class="text-center">
                                     <tr>
@@ -190,7 +182,7 @@
                                     </tr>
                                 </tfoot>
                             </table>
-                            <a href="#" class="btn btn-primary mt-3"><i class="fa fa-folder mr-2" aria-hidden="true"></i>Edit Data Tim 4</a>
+                            <a href="{{ route('tpcb.edit') }}" class="btn btn-primary mt-3"><i class="fa fa-folder mr-2" aria-hidden="true"></i>Tambah/Edit Data Tim</a>
                         </div>
                     </div>
                 </div>
@@ -208,20 +200,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                    $id = 1;
+                                    @endphp
+                                    @foreach ($data->where('tim','5')->get() as $data)
                                     <tr>
-                                        <td>1</td>
-                                        <td>Drs. Haryati Nandi</td>
-                                        <td>Sekertaris Dinas</td>
+                                        <td>{{ $id++ }}</td>
+                                        <td>{{ $data->nama }}</td>
+                                        <td>{{ $data->jabatan }}</td>
                                         <td>
-                                            <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i></a> </td>
+                                            <a href="{{ route('tpcb.view',$data->nip) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a> </td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Dr. Dudi Nandi</td>
-                                        <td>Anggota</td>
-                                        <td>
-                                            <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i></a> </td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                                 <tfoot class="text-center">
                                     <tr>
@@ -232,7 +222,7 @@
                                     </tr>
                                 </tfoot>
                             </table>
-                            <a href="#" class="btn btn-primary mt-3"><i class="fa fa-folder mr-2" aria-hidden="true"></i>Edit Data Tim 5</a>
+                            <a href="{{ route('tpcb.edit') }}" class="btn btn-primary mt-3"><i class="fa fa-folder mr-2" aria-hidden="true"></i>Tambah/Edit Data Tim</a>
                         </div>
                     </div>
                 </div>

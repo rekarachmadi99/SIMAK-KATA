@@ -50,5 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         // Tim TPCB
         Route::get('/tpcb', [TPCBController::class, 'index'])->name('tpcb.index');
+        Route::get('/tpcb/view/{id}', [TPCBController::class, 'view'])->name('tpcb.view');
+        Route::get('/tpcb/edit', [TPCBController::class, 'edit'])->name('tpcb.edit');
     });
 });
